@@ -16,6 +16,11 @@ var enemyNames = ["Roborto", "amy android", "robo trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 // function to start a new game
+var randomNumber = function(40, 60) {
+    var value = math.floor(math.random() * (21)) + 40;
+
+    return value;
+};
 var startGame = function () {
     playerHealth = 100;
     playerAttack = 10;
@@ -31,7 +36,7 @@ var startGame = function () {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
 
             var pickedEnemyName = enemyNames[i];
-            enemyHealth = 50;
+            enemyHealth = randomNumber(40,60);
             fight(pickedEnemyName);
             if (i < enemyNames.length - 1) {
                 shop();
@@ -123,13 +128,14 @@ var fight = function(enemyName) {
         var confirmSkip = window.confirm("are you sure you'd like to quit?");
         if (confirmSkip) {
             window.alert(playerName + 'has decided to skip this fight.  Bye!');
-            playerMoney = playerMoney - 10;
+            playerMoney = math.max(0, playerHealth - enemyAttack);
             console.log("playerMoney", playerMoney)
             break;
         }
         }
         // remove enemy's health by subtracting the amount set in the playerAttack variable
-        enemyHealth = enemyHealth - playerAttack;
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+        enemyHealth = math.max(0, enemyHealth - damage);
         console.log(
           playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
         ); 
@@ -142,8 +148,9 @@ var fight = function(enemyName) {
           }
 
           // remove player's health by subtracting the amount set in the enemyAttack variable
-  playerHealth = playerHealth - enemyAttack;
-  console.log(
+var damage = randomNumber(enemyAttack - 3, enemyAttack);
+playerHealth = math.max(0, playerHealth - damage);
+          console.log(
     enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
   );
   // check player's health
