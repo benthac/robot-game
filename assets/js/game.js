@@ -18,6 +18,7 @@ var enemyAttack = 12;
 // You can also log multiple values at once like this
 
 var fight = function(enemyName) {
+    while(enemyHealth > 0) {
     var promptFight =window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.")
     // if player choses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
@@ -26,8 +27,6 @@ var fight = function(enemyName) {
         console.log(
           playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
         ); 
-
-        // check enemy health
         if (enemyHealth <= 0) {
             window.alert(enemyName + " has died!");
           } else {
@@ -65,7 +64,6 @@ var fight = function(enemyName) {
 }
 
     // alert players that they are starting the round
-  window.alert("Welcome to Robot Gladiators!");
   // subtract the value of 'playerAttack' from the value of 'enemyHealth and use that result to update the value in the enemyHealth var
   enemyHealth = enemyHealth - playerAttack;
   // log a resulting message to the console so we know it worked
@@ -101,5 +99,7 @@ console.log(
   }
 };
 for(var i = 0; i < enemyNames.length; i++) {
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
     fight(enemyNames[i]);
-}
+}};
