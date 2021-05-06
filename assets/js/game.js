@@ -15,6 +15,45 @@ var playerMoney = 10;
 var enemyNames = ["Roborto", "amy android", "robo trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
+// function to start a new game
+var startGame = function () {
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+            window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+
+            var pickedEnemyName = enemyNames[i];
+            enemyHealth = 50;
+            fight(pickedEnemyName);
+        }
+        else {
+            window.alert("you have lost your robot in battle!  Game Over!");
+            break;
+        }
+        }
+        endGame ();
+        };
+
+        var endGame = function () {
+            if (playerHealth > 0) {
+                window.alert("Great job, you've survived the game!  You now have a score of " + playerMoney + ".");
+            }
+            else {
+                window.alert("you've lost your robot in battle.");
+            }
+            window.alert("The game has now ended.  Let's see how you did!");
+        var playAgainConfirm = window.confirm("would you like to play again?");
+        if (playAgainConfirm) {
+            startGame ();
+        }       
+        else {
+            window.alert("Thank you for playing Robot Gladiators!  Come back soon!");
+        }
+        };
+    
+
 // You can also log multiple values at once like this
 
 var fight = function(enemyName) {
@@ -77,3 +116,4 @@ for(var i = 0; i < enemyNames.length; i++) {
     enemyHealth = 50;
     fight(enemyNames[i]);
 };
+startGame();
